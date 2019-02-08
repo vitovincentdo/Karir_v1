@@ -1,6 +1,7 @@
 from flask import Flask, request, Response, jsonify
 from flask_cors import CORS
 import json
+import os
 
 app = Flask(__name__)
 CORS(app, resources={r"/api/*": {"origins":"*"}})
@@ -74,7 +75,7 @@ def postJsonHandler():
 # DELETE Data
 @app.route('/api/data/delete/<int:user_id>', methods=['DELETE'])
 def deleteUser(user_id):
-  with open('public/assets/content/data.json', 'r+') as read_file:
+  with open('public/assets/content/articles/data.json', 'r+') as read_file:
     newDict = {}
     data = json.load(read_file)
     loadDict = data['datas']
@@ -82,6 +83,10 @@ def deleteUser(user_id):
       for loop in loadDict:
         if user_id == loop['id']:
           selectedUser = loop
+
+      count = selectedUser['id']
+      os.remove('public/assets/content/articles/article/' + str(count) + '.json')
+
       loadDict.remove(selectedUser)
       read_file.seek(0)
       read_file.truncate()
@@ -97,7 +102,6 @@ def deleteUser(user_id):
 def updateUser(user_id):
   updateContent = request.get_json()
   with open('public/assets/content/articles/data.json', 'r+') as read_file:
-    newDict = {}
     data = json.load(read_file)
     loadDict = data['datas']
     try:
@@ -106,22 +110,26 @@ def updateUser(user_id):
           selectedUser = loop
 
       count = selectedUser['id']
-      f = open('public/assets/content/articles/article/' + str(count) + '.json', 'r')
+      f = open('public/assets/content/articles/article/' + str(count) + '.json', 'r+')
       data2 = json.load(f)
       loadDict2 = data2['data']
       loadDict2.update(updateContent['data'])
-      print(loadDict2)
+      newDict = dict(data=loadDict2)
 
       selectedUser['title'] = updateContent['data']['title']
 
+      f.seek(0)
+      f.truncate()
       read_file.seek(0)
       read_file.truncate()
-      newDict['datas'] = loadDict
-      read_file.write(json.dumps(newDict))
+      newDict2 = dict(datas=loadDict)
+      read_file.write(json.dumps(newDict2))
+      f.write(json.dumps(newDict))
+      f.close()
       resp = jsonify(selectedUser)
     except:
       resp = jsonify("ID Not Found")
-  return "JSON"
+  return resp
 
 # GET Data By ID
 @app.route('/api/data/get/<int:user_id>', methods=['GET'])
@@ -138,8 +146,8 @@ def userListbyID(user_id):
       data2 = json.load(f)
       outDict = data2['data']
       selectedUser.update(outDict)
+      f.close()
       resp = jsonify(selectedUser)
-      print(selectedUser)
     except:
       resp = jsonify("ID Not Found")
   return resp
@@ -156,7 +164,7 @@ def userList():
       data2 = json.load(f)
       outDict = data2['data']
       loop.update(outDict)
-      print(loop)
+      f.close()
     return jsonify(data)
 
 if __name__ == '__main__':
