@@ -34,13 +34,13 @@ def postJsonHandler():
               temp2[key2] = value2
 
         loadData.append(temp)
-        newDict = dict(datas=loadData)
-        newDict2 = dict(data=temp2)
+        tempDict = dict(datas=loadData)
+        tempDict2 = dict(data=temp2)
         file.seek(0)
         file.truncate()
-        file.write(json.dumps(newDict))
+        file.write(json.dumps(tempDict))
         f = open('public/assets/content/articles/article/' + str(content['data']['id']) + '.json', 'w')
-        f.write(json.dumps(newDict2))
+        f.write(json.dumps(tempDict2))
         f.close()
     else:
       with open('public/assets/content/articles/data.json', 'w') as createArticles:
@@ -59,12 +59,12 @@ def postJsonHandler():
               temp2[key2] = value2
 
         temp = [temp]
-        myDict = dict(datas=temp)
-        myDict2 = dict(data=temp2)
+        tempDict = dict(datas=temp)
+        tempDict2 = dict(data=temp2)
 
-        createArticles.write(json.dumps(myDict))
+        createArticles.write(json.dumps(tempDict))
         f = open('public/assets/content/articles/article/'+str(content['data']['id'])+'.json', 'w')
-        f.write(json.dumps(myDict2))
+        f.write(json.dumps(tempDict2))
         f.close()
 
     js = json.dumps(content)

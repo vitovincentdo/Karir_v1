@@ -55,46 +55,53 @@ export default DS.RESTAdapter.extend({
         const url = `${this.host}/api/data/delete/${id}`
 
         return this.ajax(url, "DELETE");
-    }
-
+    },
     
-    // query(store, type, query) {
+    query(store, type, query) {
         
-    //     // return new Promise((resolve, reject) => {
-    //     //     this.findAll(store, type).then((data, ...args) => {
+        // return new Promise((resolve, reject) => {
+        //     this.findAll(store, type).then((data, ...args) => {
                 
-    //     //         resolve(data.filter((item) => {
-    //     //             let isMatch = true;
+        //         resolve(data.filter((item) => {
+        //             let isMatch = true;
 
-    //     //             // for(let prop in query) {
-    //     //             //     isMatch = isMatch && item[prop] === query[prop];
-    //     //             // }
+        //             // for(let prop in query) {
+        //             //     isMatch = isMatch && item[prop] === query[prop];
+        //             // }
 
-    //     //             return isMatch;
-    //     //         }), ...args);
+        //             return isMatch;
+        //         }), ...args);
 
-    //     //     }).catch(() => reject(...arguments));
-    //     // });
+        //     }).catch(() => reject(...arguments));
+        // });
 
-    //     return new Promise((resolve, reject) => {
-    //         this.findAll(store, type).then((payload, ...success) => {
+        return new Promise((resolve, reject) => {
+            this.findAll(store, type).then((payload, ...success) => {
 
-    //             payload.articles = payload.articles.filter((item) => {
-    //                 let isMatch = true;
+                payload.datas = payload.datas.filter((item) => {
+                    let isMatch = true;
 
-    //                 for(let prop in query) {
-    //                     isMatch = isMatch && item[prop].toLowerCase().match(query[prop].toLowerCase());
-    //                 }
+                    for(let prop in query) {
+                        isMatch = isMatch && item[prop].toLowerCase().match(query[prop].toLowerCase());
+                    }
 
-    //                 return isMatch;
-    //             });
+                    return isMatch;
+                });
 
-    //             resolve(payload, ...success);
+                resolve(payload, ...success);
 
-    //         }).catch((...error) => reject(...error));
-    //     });
-        
-        
+            }).catch((...error) => reject(...error));
+        });
+    }   
+    // query(store, type, query) {
+    //     let url = this.buildURL(type.modelName, null, null, 'query', query);
+    
+    //     if (this.sortQueryParams) {
+    //       query = this.sortQueryParams(query);
+    //     }
+    
+    //     return this.ajax(url, 'GET', { data: query });
+    // }
 
     //     // let url = this.buildURL(type.modelName, null, null, 'query', query);
         

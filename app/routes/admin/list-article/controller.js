@@ -2,11 +2,11 @@ import Controller from '@ember/controller';
 
 export default Controller.extend({
 
-    // actions: {
+    actions: {
 
-    //     filter(title) {
-    //         this.set('model', this.store.query('article', { title }));
-    //     }
-    // }
+        filter(title) {
+            this.set('model', this.store.query('data', { title }));
+        }
+    }
 
 });
