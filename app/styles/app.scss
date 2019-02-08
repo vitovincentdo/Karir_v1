@@ -14,3 +14,27 @@
 .font-champagne {
   font-family: $font-family-champagne;
 }
+
+.font-droidsans {
+  font-family: $font-family-droidsans
+}
+.font-montserrat {
+  font-family: $font-family-montserrat
+}
+
+.bg-color{
+  background-color: #2b2b2b;
+}
+
+.bg-cover{
+  background-image: url("/assets/images/landing-page.png");
+}
+
+.carimg{
+  width: 1074px;
+  height: 768px;
+}
+
+.tableDefault{
+  white-space: pre
+}

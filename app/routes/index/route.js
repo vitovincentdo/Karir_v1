@@ -5,6 +5,6 @@ export default Route.extend({
   beforeModel() {
     this._super(...arguments);
     return true;
-  }
+  },
 
 });

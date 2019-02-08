@@ -1,58 +1,85 @@
-<div class="container-fluid slice" id="first">
-  <div class="container align-self-center">
+<div class="container-fluid slice bg-color" id="first">
+  <div class="container bg-cover">
     <div class="row">
 
-      <div class="col-lg d-flex">
+      <div class="col-lg d-flex justify-content-center">
         <div class="align-self-center">
           <span class="font-race text-primary title">BCA</span>
           <span class="font-champagne subtitle">IT Career</span>
         </div>
       </div>
 
-      <div class="col-lg d-flex">
+    </div>
+  </div>
+</div>
 
-        {{!-- <div class="row">
-          <div class="col-6"><button class="btn btn-danger btn-block btn-lg py-4"><h4>BIT</h4>Beware IT Bites</button></div>
-          <div class="col-6"><button class="btn btn-warning btn-block btn-lg py-4"><h4>PPTI</h4>Get IT Right</button></div>
-          <div class="col-6"><button class="btn btn-success btn-block btn-lg mt-4 py-4"><h4>INTERNSHIP</h4>See IT Yourself</button></div>
-          <div class="col-6"><button class="btn btn-primary btn-block btn-lg mt-4 py-4"><h4>PROFESSIONAL</h4>You Got IT</button></div>
-        </div> --}}
-
-        <fieldset class="align-self-center" id="job-search">
-
-          <div class="form-group">
-            <label>Location</label>
-            {{!-- <input type="email" class="form-control" placeholder="Enter email"> --}}
-            <select class="form-control">
-              <option>Jakarta</option>
-              <option>Bandung</option>
-              <option>Surabaya</option>
-            </select>
-            <small class="form-text text-muted">Choose ...</small>
+<div class="container-fluid slice bg-color " id="first">
+  <div class="container align-self-center">
+    <div class="row">
+        <div class="col-lg d-flex carousel slide" id="carouselJob" data-ride="carousel">
+          {{!-- indicator --}}
+          <div class="carousel-indicators">
+            <div class="active" data-target="#carouselJob" data-slide-to="0"></div>
+            <div data-target="#carouselJob" data-slide-to="1"></div>
+            <div data-target="#carouselJob" data-slide-to="2"></div>
           </div>
 
-          <div class="form-group">
-            <label>Occupation</label>
-            {{!-- <input type="email" class="form-control" placeholder="Enter email"> --}}
-            <select class="form-control">
-              <option>Network</option>
-              <option>Programmer</option>
-              <option>Data Analyst</option>
-            </select>
-            <small class="form-text text-muted">Choose ...</small>
+          {{!-- the slideshow --}}
+          <div class="carousel-inner">
+            <div class="carousel-item active">
+              <div class="col-lg d-flex">
+                <div class="align-self-center">
+                  <img src="/assets/images/1 BIT.png" alt="Fresh Graduate" width="100%">
+                </div>
+              </div>
+            </div>
+            <div class="carousel-item">
+              <img class="carimg" src="/assets/images/2 INTERNSHIP.png" alt="Fresh Graduate">
+            </div>
+            <div class="carousel-item">
+              <img class="carimg" src="/assets/images/3 PPTI.png" alt="Fresh Graduate">
+            </div>
           </div>
 
-          <button class="btn btn-primary">Search</button>
+          <div class="col-lg d-flex">
+            <div class="align-self-center">
+            <span class="font-race text-primary title">01</span>
+            <span class="font-champagne subtitle">Fresh Graduates</span>
 
-        </fieldset>
+            <button class="btn btn-primary" {{action 'scrollUp'}}>Prev</button>
+            <button class="btn btn-primary" {{action 'scrollDown'}}>Next</button>
+            </div>
+          </div>
 
+          {{!-- left and right control --}}
+           <a class="carousel-control-prev" href="#carouselJob" data-slide="prev">
+             <span class="carousel-control-prev-icon"></span>
+          </a>
+          <a class="carousel-control-next" href="#carouselJob" data-slide="next">
+            <span class="carousel-control-next-icon"></span>
+          </a>
+        </div>
+      {{!-- <div class="col-lg d-flex">
+        <div class="align-self-center">
+          <img src="/assets/images/1 BIT.png" alt="Fresh Graduate" width="100%">
+        </div>
       </div>
+
+       <div class="col-lg d-flex">
+        <div class="align-self-center">
+          <span class="font-race text-primary title">01</span>
+          <span class="font-champagne subtitle">Fresh Graduates</span>
+
+          <button class="btn btn-primary" {{action 'scrollUp'}}>Prev</button>
+          <button class="btn btn-primary" {{action 'scrollDown'}}>Next</button>
+        </div>
+      </div> --}}
 
     </div>
   </div>
 </div>
 
-<div class="container-fluid slice bg-dark" id="second">
+<div class="container-fluid slice bg-dark" id="[''">
   <div class="container align-self-center">
     <div class="row">
 
