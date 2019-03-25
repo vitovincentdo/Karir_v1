@@ -1,0 +1,44 @@
+    <div class="container-fluid slice">
+        <div class="container">
+            <br>
+            <h1>List of Articles</h1>
+
+            <fieldset class="form">
+            
+                {{!-- <div class="form-group">
+                    <label>Search by Title</label>
+                    {{input type="text" class="form-control" value=searchTitle insert-newline=(action 'filter' searchTitle)}}
+                </div> --}}
+
+            </fieldset>
+
+            <table class="table table-bordered table-striped">
+            <thead>
+                <tr>
+                    <th>Title</th>
+                    <th>Article</th>
+                    <th>Action</th>
+                </tr>
+            </thead>
+            <tbody>
+            {{#each model as |article|}}
+                <tr>
+                <td class="tableDefault">{{article.title}}</td>
+                <td class="tableDefault">
+                    <div class="col-xl wrap-text">
+                        {{{article.article}}}
+                    </div>
+                </td>
+                {{!-- <td>
+                    {{#link-to 'admin.editArticle' article.id class='btn btn-success'}}Edit{{/link-to}}
+                    <br>
+                    <button class="btn btn-danger"{{action 'deleteArticle' article }}>Delete</button>
+                </td> --}}
+                </tr>
+            {{/each}}
+            </tbody>
+            </table>
+        </div>
+    </div>
+
+    {{outlet}}

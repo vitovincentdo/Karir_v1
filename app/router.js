@@ -15,7 +15,17 @@ Router.map(function() {
       this.route('editArticle', {path: '/:article_id/edit'});
 
       this.route('index', function() {});
+
+      this.route('thoughts', function() {
+        this.route('thoughts');
+        this.route('list-thoughts');
+      });
+      this.route('jobs', function() {
+        this.route('job-input');
+        this.route('list-jobs');
+      });
     });
+    this.route('coba');
   });
 });
 

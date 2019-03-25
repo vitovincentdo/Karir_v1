@@ -1,35 +1,54 @@
 import DS from 'ember-data';
-import { jQ } from 'karir/utils/short';
+import host from 'karir/utils/host';
+import { MODEL_PREFIX } from 'karir/utils/properties';
 // import FirebaseAdapter from 'emberfire/adapters/firebase';
 
 // export default FirebaseAdapter.extend({
 // });
 
 export default DS.RESTAdapter.extend({
-    namespace: 'api',
-    host: 'http://127.0.0.1:5000',
-    primaryKey:'id',
+    headers: {
+        "Authorization": "Basic QWRtaW5pc3RyYXRvcjptYW5hZ2U=",
+    },
+    // namespace: 'api',
+    // host: 'http://localhost:82',
+    // // host: 'http://127.0.0.1:5000',
+    // primaryKey:'PersonID',
 
-    createRecord(store, type, snapshot){
-        let data = {};
-        let serializer = store.serializerFor(type.modelName);
-        const url = `${this.host}/api/data/post`;
+    // createRecord(store, type, snapshot){
+    //     let data = {};
+    //     let serializer = store.serializerFor(type.modelName);
+    //     const url = `${this.host}/api/data/post`;
+        
+    //     serializer.serializeIntoHash(data, type, snapshot);
 
-        serializer.serializeIntoHash(data, type, snapshot)
+    //     // snapshot.rollbackAttributes();
 
-        return this.ajax(url, "POST", { data: data})
+    //     return this.ajax(url, "POST", { data: data})
+    // },
+
+    urlForFindAll(modelName) {
+        return host(`${this._removePrefix(modelName)}.search`);
     },
 
-    findAll(store, type, sinceToken, snapshotRecordArray){
-        let query = this.buildQuery(snapshotRecordArray);
-        let url = `${this.host}/api/data/list`;
-    
-        if (sinceToken) {
-          query.since = sinceToken;
-        }
-    
-        return this.ajax(url, 'GET', { data: query });
+    urlForCreateRecord(modelName) {
+        return host(`${this._removePrefix(modelName)}.create`);
     },
+
+    _removePrefix(name) {
+        return name.replace(`${MODEL_PREFIX}/`, '').replace(/\//g, '.');
+    },
+
+    // findAll(store, type, sinceToken, snapshotRecordArray){
+    //     let query = this.buildQuery(snapshotRecordArray);
+    //     let url = `${this.host}/api/data/list`;
+    
+    //     if (sinceToken) {
+    //       query.since = sinceToken;
+    //     }
+    
+    //     return this.ajax(url, 'GET', { data: query });
+    // },
 
     findRecord(store, type, id, snapshot) {
         // let url = this.buildURL(type.modelName, id, snapshot, 'findRecord');

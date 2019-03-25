@@ -1,7 +1,17 @@
 <div class="container-fluid slice">
   <div class="container align-self-center">
-    {{#link-to 'admin.article'}}<button class="btn btn-primary">Article</button>{{/link-to}}
-    {{#link-to 'admin.listArticle'}}<button class="btn btn-primary">List All Article</button>{{/link-to}}
+    <div class="row">
+      {{#link-to 'admin.article'}}<button class="btn btn-primary">Article</button>{{/link-to}}
+      {{#link-to 'admin.listArticle'}}<button class="btn btn-primary">List All Article</button>{{/link-to}}
+    </div>
+    <div class="row">
+      {{#link-to 'admin.thoughts.thoughts'}}<button class="btn btn-primary">Thought</button>{{/link-to}}
+      {{#link-to 'admin.thoughts.list-thoughts'}}<button class="btn btn-primary">List All Thought</button>{{/link-to}}
+    </div>
+    <div class="row">
+      {{#link-to 'admin.jobs.job-input'}}<button class="btn btn-primary">job</button>{{/link-to}}
+      {{#link-to 'admin.jobs.list-jobs'}}<button class="btn btn-primary">List All jobs</button>{{/link-to}}
+    </div>
   </div>
 </div>
 

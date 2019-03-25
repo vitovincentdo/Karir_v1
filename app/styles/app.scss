@@ -38,3 +38,14 @@
 .tableDefault{
   white-space: pre
 }
+
+.wrap-text{
+  max-width:500px;
+  // word-wrap: break-word;
+  overflow: hidden;
+}
+.cc{
+  max-width:250px;
+  word-wrap: break-word;
+  overflow: hidden;
+}
