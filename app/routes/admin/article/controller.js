@@ -5,6 +5,7 @@ export default Controller.extend({
     // Newarticle:'',
     Newtitle:'',
     Newdate:'',
+    newImage: '',
     ownOptions:{
         branding: false,
         plugins: 'paste code print preview searchreplace autolink directionality visualblocks visualchars fullscreen image link media template codesample table charmap hr pagebreak nonbreaking anchor toc insertdatetime advlist lists textcolor wordcount imagetools colorpicker textpattern help',
@@ -27,20 +28,27 @@ export default Controller.extend({
         // font_formats: 'Andale Mono=andale mono,times;Arial=arial,helvetica,sans-serif;Arial Black=arial black,avant garde;Book Antiqua=book antiqua,palatino;Comic Sans MS=comic sans ms,sans-serif;Courier New=courier new,courier;Georgia=georgia,palatino;Helvetica=helvetica;Impact=impact,chicago;Symbol=symbol;Tahoma=tahoma,arial,helvetica,sans-serif;Terminal=terminal,monaco;Times New Roman=times new roman,times;Trebuchet MS=trebuchet ms,geneva;Verdana=verdana,geneva;Webdings=webdings;Wingdings=wingdings,zapf dingbats',
         // fontsize_formats: '11px 12px 14px 16px 18px 24px 36px 48px'
     },
+    imageOptions:{
+        plugins:'paste code',
+        branding:false,
+        menubar: false,
+        toolbar: false,
+        paste_data_images: true,
+        image_advtab: true,
+        height: 200,
+    },
     actions:{
-        // myOnChangedAction(value){
-        //     let isi = this.set('text', value);
-        //     console.log(isi)
-        // },
         saveArticle(){
             const title = this.get('Newtitle')
             const date = this.get('Newdate')
             const article = this.get('text')
+            const thumbImage = this.get('newImage')
 
             const newArticle = this.get('store').createRecord('article',{
                 title: title,
                 date: date,
-                article: article
+                article: article,
+                thumbImage:thumbImage
             })
             // newArticle.save().catch(() => {});
             newArticle.save();
@@ -48,6 +56,7 @@ export default Controller.extend({
             this.set('Newtitle', '');
             this.set('Newdate', '');
             this.set('text', '');
+            this.set('newImage', '');
         }
     }
     // Newtitle:'',

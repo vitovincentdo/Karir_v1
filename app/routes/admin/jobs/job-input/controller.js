@@ -5,6 +5,7 @@ export default Controller.extend({
     // Newarticle:'',
     Newname:'',
     // Newdate:'',
+    newImgJob:'',
     ownOptions:{
         branding: false,
         plugins: 'code print preview searchreplace autolink directionality visualblocks visualchars fullscreen image link media template codesample table charmap hr pagebreak nonbreaking anchor toc insertdatetime advlist lists textcolor wordcount imagetools colorpicker textpattern help',
@@ -25,6 +26,15 @@ export default Controller.extend({
         // font_formats: 'Andale Mono=andale mono,times;Arial=arial,helvetica,sans-serif;Arial Black=arial black,avant garde;Book Antiqua=book antiqua,palatino;Comic Sans MS=comic sans ms,sans-serif;Courier New=courier new,courier;Georgia=georgia,palatino;Helvetica=helvetica;Impact=impact,chicago;Symbol=symbol;Tahoma=tahoma,arial,helvetica,sans-serif;Terminal=terminal,monaco;Times New Roman=times new roman,times;Trebuchet MS=trebuchet ms,geneva;Verdana=verdana,geneva;Webdings=webdings;Wingdings=wingdings,zapf dingbats',
         // fontsize_formats: '11px 12px 14px 16px 18px 24px 36px 48px'
     },
+    jobImageOptions:{
+        plugins:'paste code',
+        branding:false,
+        menubar: false,
+        toolbar: false,
+        paste_data_images: true,
+        image_advtab: true,
+        height: 200,
+    },
     actions:{
         // myOnChangedAction(value){
         //     let isi = this.set('text', value);
@@ -33,16 +43,19 @@ export default Controller.extend({
         saveJob(){
             const name = this.get('Newname')
             const description = this.get('jobDescription')
+            const thumbJob = this.get('newImgJob')
 
             const newJob = this.get('store').createRecord('job',{
                 name: name,
-                description: description
+                description: description,
+                thumbJob:thumbJob
             })
             // newArticle.save().catch(() => {});
             newJob.save();
 
             this.set('Newname', '');
             this.set('jobDescription', '');
+            this.set('newImgJob', '');
         }
     }
 });

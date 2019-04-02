@@ -8,12 +8,24 @@
                 {{input type="text" value=Newname class="form-control" placeholder="The name of the Library"}}
             </div>
         </div>
+        sakdasdlksmdolqndsixclmadoilaksdkad
+        kldsad
+        adadadas
+        vpewiaaqw[qowas
+        alcasaslkan]
         {{!-- <div class="form-group">
             <label class="col-sm-2 control-label">Article</label>
             <div class="col-sm-10">
                 {{textarea value=Newarticle placeholder="Input your article here..." class="form-control" row="7"}}
             </div>
         </div> --}}
+        <div class="form-group">
+            <label class="col-sm-6 control-label">Image-Job (Drag & Drop Here):</label>
+            <div class="col-sm-6">
+                {{!-- {{input type="file" id="fileInput" class="form-control" action="encodeImageFileAsURL"}} --}}
+                {{tinymce-editor options=jobImageOptions value=newImgJob}}
+            </div>
+        </div>
         <div class="form-group">
             {{tinymce-editor options=ownOptions value=jobDescription}}
         </div>
