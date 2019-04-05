@@ -1,12 +1,6 @@
 import Controller from '@ember/controller';
 
 export default Controller.extend({
-    jobDescription: '',
-    // Newarticle:'',
-    Newname:'',
-    flagFeatured:false,
-    // Newdate:'',
-    newImgJob:'',
     ownOptions:{
         branding: false,
         plugins: 'code print preview searchreplace autolink directionality visualblocks visualchars fullscreen image link media template codesample table charmap hr pagebreak nonbreaking anchor toc insertdatetime advlist lists textcolor wordcount imagetools colorpicker textpattern help',
@@ -37,32 +31,8 @@ export default Controller.extend({
         height: 200,
     },
     actions:{
-        // myOnChangedAction(value){
-        //     let isi = this.set('text', value);
-        //     console.log(isi)
-        // },
-        valueChanged(value){
-            this.set('flagFeatured', value);
-        },
-        saveJob(){
-            const name = this.get('Newname')
-            const description = this.get('jobDescription')
-            const thumbJob = this.get('newImgJob')
-            const featured = this.get('flagFeatured')
-
-            const newJob = this.get('store').createRecord('job',{
-                name: name,
-                description: description,
-                thumbJob:thumbJob,
-                featured:featured
-            })
-            // newArticle.save().catch(() => {});
-            newJob.save();
-
-            this.set('Newname', '');
-            this.set('jobDescription', '');
-            this.set('newImgJob', '');
-            this.set('flagFeatured', '');
+        valueHasChanged(value){
+            this.set('model.featured', value);
         }
     }
 });

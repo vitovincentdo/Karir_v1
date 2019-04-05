@@ -1,1 +1,47 @@
+<div class="container-fluid slice">
+    <div class="container">
+        <br>
+        <h1>List of Jobs</h1>
+        
+
+        {{!-- <fieldset class="form">
+        
+            <div class="form-group">
+                <label>Search by Title</label>
+                {{input type="text" class="form-control" value=searchTitle insert-newline=(action 'filter' searchTitle)}}
+            </div>
+
+        </fieldset> --}}
+
+        <table class="table table-bordered table-striped">
+        <thead>
+            <tr>
+                <th>Name</th>
+                <th>Featured</th>
+                <th>Action</th>
+            </tr>
+        </thead>
+        <tbody>
+        {{#each model as |job|}}
+            <tr>
+            <td class="tableDefault cc">{{job.name}}</td>
+            {{!-- <td class="tableDefault">
+                <div class="col-xl wrap-text">
+                    {{{.article}}}
+                </div>
+            </td> --}}
+            <td>
+                {{job.featured}}
+            </td>
+            <td>
+                {{#link-to 'admin.jobs.editJob' job.id class='btn btn-success btn-xs'}}Edit{{/link-to}}
+            </td>
+            </tr>
+        {{/each}}
+        </tbody>
+        </table>
+        <button {{action 'saveChanged' job}}>Check All</button>
+    </div>
+</div>
+
 {{outlet}}

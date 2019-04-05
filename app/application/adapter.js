@@ -7,12 +7,9 @@ import { MODEL_PREFIX } from 'karir/utils/properties';
 // });
 
 export default DS.RESTAdapter.extend({
-    headers: {
-        "Authorization": "Basic QWRtaW5pc3RyYXRvcjptYW5hZ2U=",
-    },
     // namespace: 'api',
     // host: 'http://localhost:82',
-    // // host: 'http://127.0.0.1:5000',
+    // host: 'http://127.0.0.1:5000',
     // primaryKey:'PersonID',
 
     // createRecord(store, type, snapshot){
@@ -35,6 +32,15 @@ export default DS.RESTAdapter.extend({
         return host(`${this._removePrefix(modelName)}.create`);
     },
 
+    urlForFindRecord(id, modelName) {
+        return host(`${this._removePrefix(modelName)}.find`).replace(/:id/, id);
+    },
+
+    urlForUpdateRecord(id, modelName){
+        const url = host(`${this._removePrefix(modelName)}.update`) + `/${id}`;
+        return url
+    },
+
     _removePrefix(name) {
         return name.replace(`${MODEL_PREFIX}/`, '').replace(/\//g, '.');
     },
@@ -50,31 +56,31 @@ export default DS.RESTAdapter.extend({
     //     return this.ajax(url, 'GET', { data: query });
     // },
 
-    findRecord(store, type, id, snapshot) {
-        // let url = this.buildURL(type.modelName, id, snapshot, 'findRecord');
-        let url = `${this.host}/api/data/get/${id}`;
-        let query = this.buildQuery(snapshot);
+    // findRecord(store, type, id, snapshot) {
+    //     // let url = this.buildURL(type.modelName, id, snapshot, 'findRecord');
+    //     let url = `${this.host}/api/job/get/${id}`;
+    //     let query = this.buildQuery(snapshot);
     
-        return this.ajax(url, 'GET', { data: query });
-    },
+    //     return this.ajax(url, 'GET', { data: query });
+    // },
     
-    updateRecord(store, type, snapshot){
-        let id = snapshot.id;
-        let data = {};
-        let serializer = store.serializerFor(type.modelName);
-        const url = `${this.host}/api/data/update/${id}`
+    // updateRecord(store, type, snapshot){
+    //     let id = snapshot.id;
+    //     let data = {};
+    //     let serializer = store.serializerFor(type.modelName);
+    //     const url = host(`${this._removePrefix(type.modelName)}.update`) + `/${id}`;
 
-        serializer.serializeIntoHash(data, type, snapshot);
+    //     serializer.serializeIntoHash(data, type, snapshot);
+    //     console.log(data)
+    //     return this.ajax(url, "PUT", { data: data});
+    // },
 
-        return this.ajax(url, "PUT", { data: data});
-    },
+    // deleteRecord(store, type, snapshot){
+    //     let id = snapshot.id;
+    //     const url = `${this.host}/api/data/delete/${id}`
 
-    deleteRecord(store, type, snapshot){
-        let id = snapshot.id;
-        const url = `${this.host}/api/data/delete/${id}`
-
-        return this.ajax(url, "DELETE");
-    },
+    //     return this.ajax(url, "DELETE");
+    // },
     
     query(store, type, query) {
         

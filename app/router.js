@@ -23,9 +23,9 @@ Router.map(function() {
       this.route('jobs', function() {
         this.route('job-input');
         this.route('list-jobs');
+        this.route('editJob', {path: '/:job_id/edit'});
       });
     });
-    this.route('coba');
   });
 });
 

@@ -14,7 +14,10 @@ export default function host(key) {
       create: `${host}/api/thought/post`
     },
     'job':{
-      create: `${host}/api/job/post`
+      create: `${host}/api/job/post`,
+      search: `${host}/api/job/list`,
+      find: `${host}/api/job/get/:id`,
+      update: `${host}/api/job/update`,
     },
     // 'person':{
     //   search: `${host}/rest/JDBC_Tutorial/test_retrieve`
