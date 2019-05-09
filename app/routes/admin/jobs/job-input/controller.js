@@ -2,17 +2,19 @@ import Controller from '@ember/controller';
 
 export default Controller.extend({
     jobDescription: '',
-    // Newarticle:'',
+    jobQualification: '',
     Newname:'',
     flagFeatured:false,
-    // Newdate:'',
     newImgJob:'',
+    NewSpecial:'',
+    NewLocation:'',
+    defaultURL: 'https://www.kalibrr.com/c/bank-central-asia-1/jobs',
     ownOptions:{
         branding: false,
         plugins: 'code print preview searchreplace autolink directionality visualblocks visualchars fullscreen image link media template codesample table charmap hr pagebreak nonbreaking anchor toc insertdatetime advlist lists textcolor wordcount imagetools colorpicker textpattern help',
         toolbar: 'formatselect | bold italic strikethrough forecolor backcolor | link | alignleft aligncenter alignright alignjustify  | numlist bullist outdent indent | removeformat',
         image_advtab: true,
-        height: 400
+        height: 400,
         // menu: {
         //     file: {title: 'File', items: 'newdocument | preview'},
         //     edit: {title: 'Edit', items: 'undo redo | cut copy paste pastetext | selectall'},
@@ -45,22 +47,34 @@ export default Controller.extend({
             this.set('flagFeatured', value);
         },
         saveJob(){
-            const name = this.get('Newname')
-            const description = this.get('jobDescription')
-            const thumbJob = this.get('newImgJob')
-            const featured = this.get('flagFeatured')
+            const name = this.get('Newname');
+            const specialization = this.get('NewSpecial');
+            const location = this.get('NewLocation');
+            const description = this.get('jobDescription');
+            const qualification = this.get('jobQualification');
+            const thumbJob = this.get('newImgJob');
+            const featured = this.get('flagFeatured');
+            const url = this.get('defaultURL');
 
             const newJob = this.get('store').createRecord('job',{
                 name: name,
+                specialization: specialization,
+                location: location,
                 description: description,
+                qualification: qualification,
                 thumbJob:thumbJob,
-                featured:featured
+                featured:featured,
+                url: url
             })
             // newArticle.save().catch(() => {});
             newJob.save();
 
             this.set('Newname', '');
+            this.set('NewSpecial', '');
+            this.set('NewLocation', '');
+            this.set('Newname', '');
             this.set('jobDescription', '');
+            this.set('jobQualification', '');
             this.set('newImgJob', '');
             this.set('flagFeatured', '');
         }

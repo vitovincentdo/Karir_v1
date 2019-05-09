@@ -5,7 +5,19 @@
         <div class="form-group">
             <label class="col-sm-2 control-label">Job Name</label>
             <div class="col-sm-10">
-                {{input type="text" value=Newname class="form-control" placeholder="The name of the Library"}}
+                {{input type="text" value=Newname class="form-control" placeholder="Input Job Name..."}}
+            </div>
+        </div>
+        <div class="form-group">
+            <label class="col-sm-2 control-label">Job Specialization</label>
+            <div class="col-sm-10">
+                {{input type="text" value=NewSpecial class="form-control" placeholder="Input Job Specialization..."}}
+            </div>
+        </div>
+        <div class="form-group">
+            <label class="col-sm-2 control-label">Job Location</label>
+            <div class="col-sm-10">
+                {{input type="text" value=NewLocation class="form-control" placeholder="Input Job Location (i.e jakarta, surabaya,...)"}}
             </div>
         </div>
         {{!-- <div class="form-group">
@@ -22,9 +34,15 @@
             </div>
         </div>
         <div class="form-group">
-            <label class="col-sm-6 control-label">Article Content:</label>
+            <label class="col-sm-6 control-label">Job Description:</label>
             <div class="col-sm-8">
             {{tinymce-editor options=ownOptions value=jobDescription}}
+            </div>
+        </div>
+        <div class="form-group">
+            <label class="col-sm-6 control-label">Job Qualification:</label>
+            <div class="col-sm-8">
+            {{tinymce-editor options=ownOptions value=jobQualification}}
             </div>
         </div>
         <div class="form-group">

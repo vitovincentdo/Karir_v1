@@ -19,6 +19,9 @@ export default function host(key) {
       find: `${host}/api/job/get/:id`,
       update: `${host}/api/job/update`,
     },
+    'counter':{
+      create: `${host}/api/counter/post`,
+    }
     // 'person':{
     //   search: `${host}/rest/JDBC_Tutorial/test_retrieve`
     // }

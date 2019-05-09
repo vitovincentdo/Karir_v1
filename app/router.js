@@ -25,6 +25,7 @@ Router.map(function() {
         this.route('list-jobs');
         this.route('editJob', {path: '/:job_id/edit'});
       });
+      this.route('counter');
     });
   });
 });
